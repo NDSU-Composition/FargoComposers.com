@@ -1,9 +1,16 @@
 <?php
 
+require_once "/var/www/api.ntfg.net/htdocs/hammer/hammer.php";
+$hammer = new Hammer;
+$hammer->setHS(1);
+$d = new david_document($hammer);
+
 function composition($title,$composer,$image,$link,$instrumentation,$note="")
 {
 	echo "<div class=\"col-md-3\"><div class=\" alert alert-success\"><a href=\"".$link."\" target=\"_BLANK\"><img src=\"".$image."\" alt=\"".$composer."-".$title."\" style=\"max-width:100%\" /><br /><h3>".$title."</h3><h4>".$composer."</h4>".$instrumentation."</a></div></div>";
 }
+
+
 
 ?>
 
@@ -23,6 +30,7 @@ function composition($title,$composer,$image,$link,$instrumentation,$note="")
 		<link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css" />
 		<!-- Core theme CSS (includes Bootstrap)-->
 		<link href="css/styles.css" rel="stylesheet" />
+		<?php $hammer->tzscript(); ?>
 	</head>
 	<body id="page-top">
 		<!-- Navigation-->
@@ -39,6 +47,7 @@ function composition($title,$composer,$image,$link,$instrumentation,$note="")
 					<li class="nav-item"><a class="nav-link js-scroll-trigger" href="#chamber">Chamber</a></li>
 					<li class="nav-item"><a class="nav-link js-scroll-trigger" href="#choral">Choral</a></li>
 					<li class="nav-item"><a class="nav-link js-scroll-trigger" href="#large-ensemble">Large Ensemble</a></li>
+					<li class="nav-item"><a class="nav-link js-scroll-trigger" href="#albums">Albums</a></li>
 				</ul>
 			</div>
 		</nav>
@@ -69,8 +78,9 @@ function composition($title,$composer,$image,$link,$instrumentation,$note="")
 					<div class="row">
 					<?php composition("Dance of The Fairies","Owen Cary","/assets/scorepics/Owen_dance_Fairies.png","https://www.sheetmusicplus.com/en/product/dance-of-the-fairies-22086755.html","Solo Piano");?>
 					<?php composition("Montecian Festival","Jonathon Erickson","/assets/scorepics/Erickson-MontecianFestival.png","https://www.sheetmusicplus.com/en/product/montecian-festival-22608114.html","Clarinet and Piano");?>
+					<?php composition("Return me Home to Frost Laden Trees","Jonathon Erickson","/assets/scorepics/Erickson-FrostTreesPiano.png","https://www.sheetmusicdirect.com/en-US/se/ID_No/1460904/Product.aspx","Solo Piano");?>
 					<?php composition("Sonata for Tuba and Piano","Connor McCormick","https://f4.bcbits.com/img/0031555293_36.jpg","https://connormccormick.bandcamp.com/merch/sonata-for-tuba-and-piano","Tuba and Piano");?>
-					<?php composition("Head in the Clouds","Kyle Vanderburg","https://liszt.me/fetch/10EBA100-9135-426F-8EB1-3EB85D25C4A9","https://kylevanderburg.com/music/head-in-the-clouds/","Soprano Sax and Piano");?>
+					<?php composition("Head in the Clouds","Kyle Vanderburg",$d->getURL("10EBA100-9135-426F-8EB1-3EB85D25C4A9"),"https://kylevanderburg.com/music/head-in-the-clouds/","Soprano Sax and Piano");?>
 					</div>
 				</div>
 			</section>
@@ -84,6 +94,7 @@ function composition($title,$composer,$image,$link,$instrumentation,$note="")
 					<?php composition("Into the Forest","Owen Cary","/assets/scorepics/Owen_Forest.png","https://www.sheetmusicplus.com/en/product/into-the-forest-22086493.html","Percussion Duet");?>
 					<?php composition("Metalshop Meltdown","Owen Cary","/assets/scorepics/Owen_Metalshop.png","https://www.sheetmusicplus.com/en/product/metalshop-meltdown-22165912.html","Percussion Ensemble");?>
 					<?php composition("Excerpt from The Shadow of Mercy","Jonathon Erickson","/assets/scorepics/Erickson-ShadowMercy.png","https://www.sheetmusicdirect.com/en-US/se/ID_No/1401375/Product.aspx","String Quintet");?>
+					<?php composition("The Emissary of Hope","Jonathon Erickson","/assets/scorepics/Erickson-Emissary.png","https://www.sheetmusicdirect.com/en-US/se/ID_No/1426946/Product.aspx","Mixed Chamber Ensemble");?>
 					<?php composition("Hexagon","Connor McCormick","https://f4.bcbits.com/img/0031554708_36.jpg","https://connormccormick.bandcamp.com/merch/hexagon-for-clarinet-quartet","Clarinet Quartet");?>
 					<?php composition("Petty Larceny","Connor McCormick","https://f4.bcbits.com/img/0031555384_36.jpg","https://connormccormick.bandcamp.com/merch/petty-larceny-for-brass-quintet","Brass Quintet");?>
 					<?php composition("House of Mirrors","Connor McCormick","https://f4.bcbits.com/img/0031555580_36.jpg","https://connormccormick.bandcamp.com/merch/house-of-mirrors-for-woodwind-quintet","Woodwind Quintet");?>
@@ -99,8 +110,8 @@ function composition($title,$composer,$image,$link,$instrumentation,$note="")
 				<div class="resume-section-content">
 					<h2 class="mb-5">Choral</h2>
 					<div class="row">
-					<?php composition("Carving a Name","Kyle Vanderburg","https://liszt.me/fetch/5BD21642-8688-469A-A939-9927BBFFAA02/","https://kylevanderburg.com/music/carving-a-name/","SSA Choir and Piano");?>
-					<?php composition("Mnemosyne","Kyle Vanderburg","https://liszt.me/fetch/CB4D3455-2E47-44B1-A35B-CCF90018AC0D","https://kylevanderburg.com/music/mnemosyne/","SATB Choir and Piano");?>
+					<?php composition("Carving a Name","Kyle Vanderburg",$d->getURL("5BD21642-8688-469A-A939-9927BBFFAA02"),"https://kylevanderburg.com/music/carving-a-name/","SSA Choir and Piano");?>
+					<?php composition("Mnemosyne","Kyle Vanderburg",$d->getURL("CB4D3455-2E47-44B1-A35B-CCF90018AC0D"),"https://kylevanderburg.com/music/mnemosyne/","SATB Choir and Piano");?>
 					</div>
 				</div>
 			</section>
@@ -110,7 +121,21 @@ function composition($title,$composer,$image,$link,$instrumentation,$note="")
 			<section class="resume-section" id="large-ensemble">
 				<div class="resume-section-content">
 					<h2 class="mb-5">Large Ensemble</h2>
-
+					<div class="row">
+					<?php composition("The Bedouin of Wyrms","Jonathon Erickson","/assets/scorepics/Erickson-Bedouin.png","https://www.sheetmusicdirect.com/en-US/se/ID_No/1426951/Product.aspx","String Ensemble");?>
+					</div>
+				</div>
+			</section>
+			<hr class="m-0" />
+			
+			<!-- Albums-->
+			<section class="resume-section" id="albums">
+				<div class="resume-section-content">
+					<h2 class="mb-5">Albums</h2>
+					<div class="row">
+					Coming Soon!
+					<?php //composition("385","Jonathon Erickson","/assets/scorepics/Erickson-Bedouin.png","https://www.sheetmusicdirect.com/en-US/se/ID_No/1426951/Product.aspx","String Ensemble");?>
+					</div>
 				</div>
 			</section>
 		</div>
